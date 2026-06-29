@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CVPreview from '../components/CVPreview';
 import EditForm from '../components/EditForm';
 import { CVData } from '../types/cv';
+import { exportToDocx } from '../utils/docxExport';
 
 interface Props {
   cv: CVData;
@@ -15,99 +16,107 @@ const PreviewPage: React.FC<Props> = ({ cv, onUpdate }) => {
   const [tab, setTab] = useState<Tab>('preview');
   const [exporting, setExporting] = useState<string | null>(null);
   const navigate = useNavigate();
+  const printRef = useRef<HTMLDivElement>(null);
 
-  // Scale A4 (794px) to fit the preview panel
-  const previewScale = Math.min(1, (window.innerWidth * 0.55) / 794);
+  const previewScale = Math.min(1, (window.innerWidth * 0.52) / 794);
 
-  const exportFile = async (type: 'pdf' | 'docx') => {
-    setExporting(type);
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleDocx = async () => {
+    setExporting('docx');
     try {
-      const res = await fetch(`/api/export/${type}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cv),
-      });
-      if (!res.ok) throw new Error(await res.text());
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${cv.fullName || 'CV'}.${type}`;
-      a.click();
-      URL.revokeObjectURL(url);
+      await exportToDocx(cv);
     } catch (e: any) {
-      alert('Export failed: ' + e.message);
+      alert('DOCX export failed: ' + e.message);
     } finally {
       setExporting(null);
     }
   };
 
   return (
-    <div className="min-h-screen bg-warm-bg flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
-      {/* Toolbar */}
-      <header className="border-b border-warm-border bg-white px-6 py-3 flex items-center justify-between sticky top-0 z-10">
-        <div className="flex items-center gap-4">
-          <button onClick={() => navigate('/')} className="text-warm-muted hover:text-warm-text text-sm">← Back</button>
-          <div className="flex items-center gap-1 bg-sand-lighter rounded-lg p-1">
-            <button
-              onClick={() => setTab('preview')}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${tab === 'preview' ? 'bg-white text-sand-dark shadow-sm' : 'text-warm-muted hover:text-warm-text'}`}
-            >
-              Preview
-            </button>
-            <button
-              onClick={() => setTab('edit')}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${tab === 'edit' ? 'bg-white text-sand-dark shadow-sm' : 'text-warm-muted hover:text-warm-text'}`}
-            >
-              Edit
-            </button>
-          </div>
-        </div>
+    <>
+      {/* Print styles — hides everything except the CV */}
+      <style>{`
+        @media print {
+          body > * { display: none !important; }
+          #print-cv { display: block !important; }
+          @page { size: A4; margin: 0; }
+        }
+        #print-cv { display: none; }
+      `}</style>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => exportFile('pdf')}
-            disabled={!!exporting}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sand text-white text-sm font-medium hover:bg-sand-dark transition-colors disabled:opacity-50"
-          >
-            {exporting === 'pdf' ? '⏳' : '↓'} PDF
-          </button>
-          <button
-            onClick={() => exportFile('docx')}
-            disabled={!!exporting}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-sand text-sand-dark text-sm font-medium hover:bg-sand-lighter transition-colors disabled:opacity-50"
-          >
-            {exporting === 'docx' ? '⏳' : '↓'} Word
-          </button>
-        </div>
-      </header>
-
-      <div className="flex flex-1 overflow-hidden">
-        {tab === 'edit' ? (
-          <div className="flex flex-1 overflow-hidden">
-            {/* Edit form */}
-            <div className="w-1/2 overflow-y-auto p-6 border-r border-warm-border bg-white">
-              <EditForm cv={cv} onChange={onUpdate} />
-            </div>
-            {/* Live preview */}
-            <div className="flex-1 overflow-auto bg-gray-100 flex justify-center p-8">
-              <div style={{ width: 794 * previewScale, height: 'fit-content' }}>
-                <CVPreview cv={cv} scale={previewScale} />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="flex-1 overflow-auto bg-gray-100 flex justify-center py-10 px-4">
-            <div style={{ width: 794 * previewScale + 32 }}>
-              <p className="text-xs text-warm-muted text-center mb-4 uppercase tracking-widest">A4 Preview — identical to export</p>
-              <div style={{ width: 794 * previewScale }}>
-                <CVPreview cv={cv} scale={previewScale} />
-              </div>
-            </div>
-          </div>
-        )}
+      {/* Hidden print target — always A4, never scaled */}
+      <div id="print-cv">
+        <CVPreview cv={cv} scale={1} />
       </div>
-    </div>
+
+      <div className="min-h-screen bg-warm-bg flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
+        {/* Toolbar */}
+        <header className="border-b border-warm-border bg-white px-6 py-3 flex items-center justify-between sticky top-0 z-10">
+          <div className="flex items-center gap-4">
+            <button onClick={() => navigate('/')} className="text-warm-muted hover:text-warm-text text-sm">← Back</button>
+            <div className="flex items-center gap-1 rounded-lg p-1" style={{ background: '#F0EAE2' }}>
+              {(['preview', 'edit'] as Tab[]).map(t => (
+                <button
+                  key={t}
+                  onClick={() => setTab(t)}
+                  className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors capitalize ${tab === t ? 'bg-white text-sand-dark shadow-sm' : 'text-warm-muted hover:text-warm-text'}`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handlePrint}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-sand text-white text-sm font-medium hover:bg-sand-dark transition-colors"
+            >
+              ↓ PDF
+            </button>
+            <button
+              onClick={handleDocx}
+              disabled={!!exporting}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg border border-sand text-sand-dark text-sm font-medium hover:bg-sand-lighter transition-colors disabled:opacity-50"
+            >
+              {exporting === 'docx' ? '⏳' : '↓'} Word
+            </button>
+          </div>
+        </header>
+
+        <div className="flex flex-1 overflow-hidden">
+          {tab === 'edit' ? (
+            <div className="flex flex-1 overflow-hidden">
+              <div className="w-1/2 overflow-y-auto p-6 border-r border-warm-border bg-white">
+                <EditForm cv={cv} onChange={onUpdate} />
+              </div>
+              <div className="flex-1 overflow-auto flex justify-center p-8" style={{ background: '#F0EDE8' }}>
+                <div style={{ width: 794 * previewScale }}>
+                  <CVPreview cv={cv} scale={previewScale} />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex-1 overflow-auto flex justify-center py-10 px-4" style={{ background: '#F0EDE8' }}>
+              <div>
+                <p className="text-center mb-4" style={{ fontSize: 11, color: '#9B7B5E', textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+                  A4 Preview — identical to PDF export
+                </p>
+                <div style={{ width: 794 * previewScale }}>
+                  <CVPreview cv={cv} scale={previewScale} />
+                </div>
+                <p className="text-center mt-4 text-warm-muted text-xs">
+                  Click <strong>↓ PDF</strong> to open the browser print dialog — choose "Save as PDF" for A4 export
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 

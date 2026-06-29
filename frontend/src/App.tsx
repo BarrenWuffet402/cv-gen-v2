@@ -8,7 +8,7 @@ const App: React.FC = () => {
   const [cv, setCV] = useState<CVData | null>(null);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/cv-gen-v2">
       <Routes>
         <Route path="/" element={<InputPage onCVLoad={setCV} />} />
         <Route
