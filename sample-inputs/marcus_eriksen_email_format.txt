@@ -1,0 +1,129 @@
+From: marcus.eriksen@gmail.com
+To: rekruttering@datahub.no
+Date: Wednesday, 18 June 2026, 14:32
+Subject: Application – Senior Data Engineer position (ref: DHB-2026-341)
+
+Hi,
+
+Saw the listing for the Senior Data Engineer role on Finn.no — looks like a
+strong match with what I've been doing for the past few years. Sending this
+over with my background in case it's useful, though I don't have a polished
+CV ready right now so I'll just write it out here.
+
+Quick intro: I'm Marcus Eriksen, based in Oslo. 9 years working as a data
+engineer, most recently 4+ years as Senior Data Engineer at Telio AS. Before
+that Oda (e-commerce) and SpareBank 1. I'm a Snowflake specialist and have
+been building production data platforms for the last several years.
+
+— CURRENT ROLE —
+
+Telio AS, Senior Data Engineer — February 2022 to now.
+
+The headline of what I've done here: I led a full migration of a legacy
+Oracle data warehouse (12 terabytes, about 7 years of history) into Snowflake.
+That took about 9 months of actual execution time and came in 4 months
+under original schedule. No data loss. The business was very happy.
+
+Since then I've been running and evolving the platform. We have around 300
+dbt models in production. Test coverage is sitting at about 80% which I'm
+reasonably proud of. Orchestration is Airflow, self-hosted on EKS. We're
+ingesting from 40+ sources — REST APIs, Salesforce, PostgreSQL via CDC,
+Kafka event streams.
+
+A project I'm particularly proud of: I designed and implemented a GDPR PII
+masking framework in Snowflake. Combined manual field tagging via dbt meta
+properties with automated regex+ML-based detection. Column-level security
+policies are managed via Terraform. Full access audit log. Worked closely
+with our DPO on this one — it was as much a legal/process project as a
+technical one.
+
+Also did the Monte Carlo rollout — data observability across 200+ tables.
+Set up custom business rule monitors (things like "daily order count can't
+be below 1000 on weekdays"). This dropped our mean time to detect data
+quality issues from sometimes multiple days to hours.
+
+Other stuff worth mentioning: mentored 3 junior engineers, migrated CI/CD
+from Jenkins to GitHub Actions (build time dropped from 18 to 7 minutes),
+and introduced Snowflake dynamic tables for near-real-time reporting use
+cases where we needed sub-5-minute data freshness.
+
+— PREVIOUS ROLE —
+
+Oda (formerly Kolonial.no), Data Engineer — August 2019 to January 2022.
+
+Joined when the data team was 6 people. Left when it was 22. That growth
+was really instructive — you have to be much more deliberate about tooling
+and process as the team scales.
+
+I owned the Redshift data warehouse there and started the evaluation/early
+migration work toward Snowflake. Built 80+ ETL pipelines using Airflow and
+Python — sources included internal microservices via Kafka, ERP systems,
+and third-party logistics APIs. Modelled e-commerce metrics: LTV, churn
+probability, cohort retention. These fed the C-suite dashboards that ran
+every morning.
+
+I also introduced dbt to the team — wrote the first 40 models, ran training
+sessions, wrote the onboarding guide. Before I left it was the team standard
+for all transformation work.
+
+One project I liked: built an anomaly detection system for order volume and
+delivery SLA metrics. Slack alerts when metrics dropped below the 95th
+percentile. Caught several production incidents before the business noticed.
+
+Also built the foundations of a feature store for the ML team — Parquet on
+S3, exposed via an internal Python library that the ML engineers used to
+pull training data.
+
+— BEFORE THAT —
+
+SpareBank 1 Gruppen, Analyst/Junior Data Engineer — June 2017 to July 2019.
+
+Started purely analytical (SQL, Tableau, reports), transitioned into
+engineering work about 14 months in. Built the first cloud data lake on
+AWS S3 + Athena. Automated a manual reconciliation process that previously
+took two full-time staff two days per month — reduced to under an hour.
+Also contributed to a self-serve Looker analytics platform rollout for
+40+ business users.
+
+DNB ASA, Intern — June 2016 to May 2017. Risk reporting team. Tableau,
+SQL, some regulatory reporting work (BCBS 239).
+
+— EDUCATION —
+
+MSc Information Systems, BI Norwegian Business School (graduated 2016).
+Thesis was on data pipeline design patterns for high-velocity event streams.
+
+BSc Computer Science, University of Oslo (graduated 2014).
+Databases and distributed systems track.
+
+— CERTIFICATIONS —
+
+SnowPro Core (Snowflake, 2023)
+SnowPro Advanced: Data Engineer (Snowflake, 2024)
+dbt Certified Developer (2023)
+AWS Certified Data Analytics – Specialty (renewed 2023)
+Astronomer Certification: Airflow Fundamentals (2022)
+Terraform Associate (2022)
+
+— SKILLS —
+
+Snowflake (advanced — architecture, security, cost optimization, dynamic
+tables, data sharing), dbt Core + dbt Cloud (advanced), Apache Airflow
+(production, self-hosted on Kubernetes), Python (pandas, pydantic, FastAPI,
+good test coverage habits), SQL (advanced across dialects), Kafka/Confluent
+(intermediate), Terraform, GitHub Actions, AWS (S3, Glue, Lambda, Redshift,
+EKS), Docker, Fivetran, Monte Carlo, Looker, Power BI.
+
+Languages: Norwegian (native), English (fluent), German (basic/conversational).
+
+Happy to jump on a call if this looks relevant. Feel free to reach me at
+marcus.eriksen@gmail.com or +47 912 34 567.
+
+Best,
+Marcus
+
+
+--
+Marcus Eriksen
++47 912 34 567
+linkedin.com/in/marcuseriksen

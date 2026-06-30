@@ -1,0 +1,45 @@
+here's my work experience, copy pasted from various places, might be a bit messy
+
+telio as - senior data engineer, feb 2022 - now
+main thing i did was the snowflake migration - we had oracle before, 12tb, took about 9 months, came in 4 months under schedule. no issues. since then running the platform, 300+ dbt models, ~80% test coverage, airflow on eks for orchestration, 40+ source systems. also built a pii/gdpr masking framework in snowflake using terraform for the policies. did the monte carlo rollout for data observability, 200+ tables, custom monitors, cut detection time from days to hours. moved ci/cd from jenkins to github actions. mentored some junior engineers (3 of them). snowflake dynamic tables for near realtime stuff. generally own the data platform end to end.
+
+stack i used there: snowflake, dbt cloud, airflow, python, kafka, fivetran, terraform, github actions, aws (s3 mainly, also some lambda and eks), monte carlo, looker
+
+---
+
+before that: oda / kolonial.no (same company, they rebranded), data engineer, aug 2019 to jan 2022
+
+joined when team was 6 ppl, left when it was 22. owned redshift, started the snowflake migration that my successor finished. built something like 80+ pipelines in airflow + python. sources were kafka (internal services), erp, 3pl apis, various things. modelled ltv, churn, cohort stuff, daily dashboards for ceo/cmo. i introduced dbt there - wrote the first 40 models, trained everyone, wrote the docs. also built anomaly detection for order volume / delivery sla - slack alerts. and built feature store foundations for the ml team (parquet on s3, internal python lib).
+
+stack: redshift, s3, glue, lambda, airflow, dbt (early version), python, kafka, looker, some tableau
+
+---
+
+sparebank 1 gruppen (insurance/finance), analyst then junior data engineer, june 2017 - july 2019
+
+first 14 months was pure analytics - sql, tableau dashboards (30ish of them), weekly reports, ad hoc analysis for product and finance. then moved into more engineering: built first cloud data lake (s3 + athena), automated a reconciliation process that was 2 FTE days/month down to under an hour, contributed to looker rollout for business users (40 people, wrote user guides, ran training).
+
+stack: oracle sql, postgresql, python, tableau, s3, athena, looker
+
+---
+
+dnb asa - intern, june 2016 - may 2017
+just supporting the risk reporting team. tableau, sql, some bcbs 239 documentation stuff. good intro to finance data.
+
+---
+
+education:
+msc information systems, BI norwegian business school, 2014-2016, thesis on pipeline design patterns
+bsc computer science, university of oslo, 2011-2014, databases/distributed systems
+
+certs:
+snowpro core (snowflake) - 2023
+snowpro advanced data engineer (snowflake) - 2024
+dbt certified developer - 2023
+aws certified data analytics specialty - 2021, renewed 2023
+airflow fundamentals (astronomer) - 2022
+terraform associate - 2022
+
+languages: norwegian native, english fluent, german a bit (b1 ish)
+
+contact: marcus.eriksen@gmail.com, +47 912 34 567, linkedin.com/in/marcuseriksen, oslo norway

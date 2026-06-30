@@ -1,0 +1,90 @@
+Marcus T. Eriksen — Data Engineer
+marcus.eriksen@gmail.com | +47 912 34 567 | Oslo, Norway
+linkedin.com/in/marcuseriksen
+
+========================================================
+
+SUMMARY
+
+Data engineer with 9+ years of experience. Currently at Telio AS building
+and running a Snowflake-based data platform. Previously at Oda (e-commerce)
+and SpareBank 1 (financial services). Strong in Snowflake, dbt, Airflow,
+and Python. Care about data quality, documentation, and pipelines that
+don't break at 3am.
+
+========================================================
+
+EXPERIENCE
+
+Telio AS — Senior Data Engineer (Feb 2022–present)
+Oslo, Norway
+
+Main focus: Building and operating Snowflake data platform.
+
+Key things I've done here:
+• Led Oracle DWH → Snowflake migration (12 TB, finished 4 months early)
+• 300+ dbt models in prod, ~80% test coverage
+• Snowflake dynamic tables for sub-5-min latency reporting
+• Airflow orchestration (40+ source systems)
+• Built GDPR PII masking framework (Snowflake + Terraform)
+• Monte Carlo data observability rollout (200+ table monitors)
+• Mentored 3 junior engineers
+• Moved CI/CD from Jenkins → GitHub Actions (build time: 18→7 min)
+
+Stack: Snowflake, dbt Cloud, Airflow (EKS), Python, Kafka, Fivetran,
+Terraform, GitHub Actions, AWS, Monte Carlo, Looker
+
+---
+
+Oda (Kolonial.no) — Data Engineer (Aug 2019–Jan 2022)
+Oslo, Norway
+
+Mid-level hire when team was 6 people, left when it was 22.
+
+What I did:
+• Owned Redshift DWH + started Snowflake migration (finished by successor)
+• 80+ ETL pipelines (Airflow + Python), sources: Kafka, ERP, 3PL APIs
+• Modelled LTV, churn, cohort metrics — C-suite daily dashboards
+• Introduced dbt to team; wrote first 40 models + training docs
+• Built anomaly detection for order/SLA metrics → Slack alerts
+• Feature store foundations for ML team (S3 Parquet + Python lib)
+
+Stack: Redshift, S3, Glue, Lambda, Airflow, dbt, Python, Kafka, Looker
+
+---
+
+SpareBank 1 Gruppen — Analyst → Junior Data Engineer (Jun 2017–Jul 2019)
+Oslo, Norway
+
+• Started in analytics (Tableau dashboards, SQL analysis)
+• Moved into engineering: built cloud data lake on S3 + Athena
+• Automated reconciliation that was 2 FTE days/month → <1 hour
+• Helped build self-serve Looker analytics platform for 40+ business users
+
+Stack: Oracle SQL, PostgreSQL, Python, Tableau, AWS S3/Athena, Looker
+
+---
+
+DNB ASA — Data Intern (Jun 2016–May 2017)
+Oslo, Norway
+
+Risk reporting support. Tableau dashboards. SQL. Some BCBS 239 work.
+
+========================================================
+
+EDUCATION
+
+MSc Information Systems — BI Norwegian Business School (2014–2016)
+BSc Computer Science — University of Oslo (2011–2014)
+
+========================================================
+
+CERTIFICATIONS (selected)
+
+SnowPro Core + Advanced: Data Engineer (Snowflake, 2023/2024)
+dbt Certified Developer (2023)
+AWS Certified Data Analytics – Specialty (2021/2023)
+
+========================================================
+
+LANGUAGES: Norwegian (native) | English (fluent) | German (basic)

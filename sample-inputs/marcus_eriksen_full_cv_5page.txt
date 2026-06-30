@@ -1,0 +1,272 @@
+CURRICULUM VITAE
+================
+
+Marcus T. Eriksen
+-----------------
+Data Engineer | Cloud & Analytics Specialist
+
+Contact:
+marcus.eriksen@gmail.com
++47 912 34 567
+LinkedIn: linkedin.com/in/marcuseriksen
+Based in Oslo, Norway (open to remote / hybrid)
+
+--
+
+PROFESSIONAL PROFILE / ABOUT ME
+---------------------------------
+
+I am an experienced data engineer with over 9 years of hands-on experience
+building and maintaining large-scale data platforms. I have deep expertise in
+Snowflake, dbt, and orchestration with Apache Airflow. I thrive in complex
+environments where I can design data architecture from the ground up, help
+teams adopt modern data stack practices, and ensure data quality across
+the pipeline.
+
+I've worked in financial services, e-commerce, and SaaS environments — each
+teaching me something different about scale, governance, and the political
+challenges of data ownership inside organizations. I care a lot about
+documentation and reproducibility. I believe pipelines that nobody understands
+are a liability, not an asset.
+
+Fluent in Norwegian and English. Working knowledge of German.
+
+Core technical skills: Snowflake ❄️, dbt (data build tool), Apache Airflow,
+Python (pandas, pydantic, fastapi), SQL (advanced), Spark (PySpark),
+Kafka (basic), Terraform, GitHub Actions, AWS (S3, Glue, Lambda, Redshift),
+GCP (BigQuery — experience, not primary), Docker, Kubernetes (basic),
+Looker, Power BI, Monte Carlo (data observability)
+
+
+---
+
+WORK HISTORY / EMPLOYMENT
+---------------------------
+
+Senior Data Engineer
+Telio AS — Oslo, Norway
+February 2022 – Present
+
+Key responsibilities and achievements:
+- Led migration of 12 TB legacy Oracle DWH to Snowflake. Migration completed
+  4 months ahead of schedule with zero data loss.
+- Designed and implemented multi-layer data architecture (raw → staging → mart)
+  using dbt. Over 300 dbt models in production, ~80% test coverage.
+- Set up Snowflake dynamic tables for near-real-time reporting use cases (sub-5-min
+  latency), replacing legacy scheduled stored procedures.
+- Built Airflow DAGs for orchestration across 40+ data sources including REST APIs,
+  Salesforce, PostgreSQL CDC, and event streams via Kafka.
+- Introduced data contracts pattern — schema enforced at ingestion, breaking changes
+  require versioning. Reduced downstream breakage incidents by ~60%.
+- Implemented column-level security and row access policies in Snowflake for GDPR
+  compliance. Worked closely with DPO to map all PII fields.
+- Mentored 3 junior data engineers; ran internal dbt bootcamp (6 sessions).
+- Participated in on-call rotation; wrote runbooks for all critical pipelines.
+- Migrated CI/CD from Jenkins to GitHub Actions. Build time down from 18 min to 7 min.
+- Championed data observability adoption (Monte Carlo). Set up monitors for
+  >200 tables. Reduced mean time to detect (MTTD) for data quality issues from
+  days to hours.
+
+Technologies: Snowflake, dbt Core + dbt Cloud, Airflow (self-hosted on EKS),
+Python, SQL, Kafka, Terraform, GitHub Actions, AWS S3, Fivetran, Monte Carlo,
+Looker
+
+
+---
+
+Data Engineer (Mid level)
+Kolonial.no / Oda — Oslo, Norway
+August 2019 – January 2022
+
+I joined Oda (then still called Kolonial.no) as a mid-level data engineer
+when the data team was 6 people. When I left, it was 22. That growth taught
+me a lot about scaling data teams — tooling, processes, and people.
+
+Main work:
+- Owned the data warehouse (Redshift) and later led the evaluation and
+  partial migration to Snowflake (migration completed by my successor).
+- Built and maintained 80+ ETL pipelines using Airflow + Python. Sources
+  included internal microservices (via Kafka), ERP systems, 3PL APIs.
+- Modelled e-commerce metrics: LTV, churn probability, cohort retention.
+  Business-critical dashboards used by C-suite daily.
+- Introduced dbt to the team — wrote the first 40 models, ran training,
+  wrote onboarding docs. This became team standard.
+- Built anomaly detection for order volume and delivery SLA metrics —
+  Slack alerts triggered for <95th percentile deviations.
+- Contributed to AB testing framework: helped define metrics, built data
+  layer for experiment tracking.
+- Worked closely with ML team — built feature store foundations using
+  Redshift + S3 (Parquet), exposed via internal Python library.
+
+Technologies: Amazon Redshift, AWS S3, Glue, Lambda, Airflow, dbt (early
+adoption), Python, Kafka, Looker, Tableau, PostgreSQL
+
+
+---
+
+Data Analyst / Junior Data Engineer
+SpareBank 1 Gruppen — Oslo, Norway
+June 2017 – July 2019
+
+Started as an analyst and transitioned into more engineering-focused work
+after about 14 months.
+
+Analysis & reporting:
+- Built and maintained 30+ Tableau dashboards for sales, risk, and
+  customer segments.
+- Created weekly/monthly automated reports (Python + email / SharePoint).
+- Ad hoc SQL analysis for product and finance teams.
+
+Engineering work (later tenure):
+- Helped build first cloud data lake on AWS S3 + Athena.
+- Wrote Python scripts for data extraction from legacy systems (Oracle, AS/400).
+- Automated reconciliation processes that previously took 2 FTE days/month.
+  Reduced to <1 hour.
+
+Technologies: SQL (Oracle, PostgreSQL), Python, Tableau, AWS S3, Athena,
+Excel (advanced), AS/400 data extraction
+
+
+---
+
+Data Intern
+DNB ASA — Oslo, Norway
+June 2016 – May 2017
+
+- Supported risk reporting team
+- Built dashboards in Tableau for credit risk monitoring
+- Wrote SQL queries for ad hoc analysis
+- Helped document data lineage for regulatory reporting (BCBS 239 project)
+
+
+---
+
+PROJECTS (Selected)
+--------------------
+
+Project: Snowflake Data Platform Migration — Telio AS
+Role: Technical Lead
+Duration: March 2022 – November 2022
+Team size: 4 engineers
+
+Full description:
+We had an Oracle-based DWH that was expensive, slow to query, and impossible
+to scale elastically. I led the design and execution of a full migration to
+Snowflake on AWS. The project involved:
+- Business requirement gathering across 15 stakeholder groups
+- Source system inventory (42 source systems identified)
+- Schema mapping and semantic reconciliation
+- dbt model build-out from scratch (no reuse of old stored procs)
+- Historical data load (12 TB, approx. 7 years of history)
+- Parallel running period (6 weeks) with automated reconciliation reports
+- Cutover coordination and hypercare (4 weeks post-cutover)
+Result: Query costs down 70%. Storage costs down 40%. BI refresh time
+from 6h to 20min. Team NPS for data platform jumped from 22 to 67.
+Technologies: Snowflake, dbt, Fivetran, Airflow, Python, Terraform, AWS
+
+
+Project: Real-Time Inventory & Demand Pipeline — Oda
+Role: Lead Engineer
+Duration: January 2021 – June 2021
+
+Built a near-real-time pipeline to feed demand forecasting models with
+up-to-date inventory data. Kafka → Confluent Cloud → Spark Streaming →
+S3 Parquet → feature served via internal Python lib to ML models.
+Latency: <90s end-to-end. Replaced 4-hour batch cycle.
+Technologies: Kafka, Confluent Cloud, PySpark, AWS S3, Python
+
+
+Project: GDPR PII Masking Framework — Telio AS
+Role: Lead Developer
+Duration: August 2022 – October 2022
+
+Built a framework for automated PII detection and masking in Snowflake.
+Used combination of manual field tagging (via dbt meta) and regex/ML-based
+auto-detection. Column-level security policies applied programmatically via
+Terraform + Snowflake provider. Full audit log for all PII access.
+Technologies: Snowflake, Terraform, Python, dbt
+
+
+Project: Data Observability Rollout — Telio AS
+Role: Owner
+Duration: Ongoing from Q1 2023
+
+Evaluated and selected Monte Carlo for data observability. Led rollout across
+all critical tables. Trained team. Set up custom monitors for business rules
+(e.g., "daily order count cannot be <1000 on weekdays"). Established SLA
+tracking for all tier-1 datasets.
+Technologies: Monte Carlo, Snowflake, Airflow, Slack
+
+
+Project: Self-Serve Analytics Platform — SpareBank 1
+Role: Contributor
+Duration: September 2018 – June 2019
+
+Contributed to initiative to give business users direct query access to
+curated data marts via Looker. Helped define the Looker data model (LookML),
+wrote user guides, ran internal training sessions for 40+ business users.
+Technologies: Looker, LookML, Redshift, PostgreSQL
+
+
+---
+
+EDUCATION
+----------
+
+Master of Science — Information Systems
+BI Norwegian Business School, Oslo
+2014 – 2016
+Thesis: "Data pipeline design patterns for high-velocity event streams"
+Grade: A (thesis), B (overall)
+
+Bachelor of Science — Computer Science
+University of Oslo (UiO)
+2011 – 2014
+Specialization: databases and distributed systems
+Grade: B average
+
+
+---
+
+CERTIFICATIONS & TRAINING
+---------------------------
+
+- SnowPro Core Certification — Snowflake (2023, valid)
+- SnowPro Advanced: Data Engineer — Snowflake (2024, valid)
+- dbt Certified Developer (2023)
+- AWS Certified Data Analytics – Specialty (2021, renewed 2023)
+- Astronomer Certification: Apache Airflow Fundamentals (2022)
+- Terraform Associate (2022)
+- Coursera: Machine Learning for Data Engineers (2020)
+
+
+---
+
+LANGUAGES
+----------
+
+Norwegian — Native
+English — Fluent (C2)
+German — Basic (B1)
+
+
+---
+
+PERSONAL PROJECTS / OPEN SOURCE
+---------------------------------
+
+- Contributed to dbt-utils (minor bug fixes, PR merged 2023)
+- Maintain a small open source Snowflake CLI helper tool:
+  github.com/meriksen/snow-helpers (~140 GitHub stars)
+- Write occasional blog posts on Substack about data engineering
+  practices (markuse.substack.com)
+
+
+---
+
+REFERENCES
+-----------
+
+Available on request.
+
+(Last updated: June 2026)
